@@ -32,7 +32,9 @@ namespace LoggerWrapper {
 		/// </summary>
 		public void Debug(string message) {
 			logger.Debug(message);
+#pragma warning disable 4014
 			rollbar.Debug(message);
+#pragma warning restore 4014
 		}
 
 		/// <summary>
