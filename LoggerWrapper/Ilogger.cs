@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 namespace LoggerWrapper {
-	public interface Ilogger {
+	public interface ILogger {
 		void Info(string message);
 		void Info(Exception exeption, string message);
 		void Info(Exception exeption, IDictionary<string, object> custom = null);
