@@ -5,6 +5,7 @@
     <Description>Wrap loggers nlog and rollbar</Description>
     <RepositoryUrl>https://github.com/milovidov983/LoggerWrapper</RepositoryUrl>
     <PackageLicenseUrl>https://github.com/milovidov983/LoggerWrapper/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIconUrl>https://github.com/milovidov983/LoggerWrapper/blob/master/docs/icon.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>
