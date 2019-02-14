@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿namespace LoggerWrapper {
+	using Newtonsoft.Json;
+	using System;
+	using System.Collections.Generic;
 
-namespace LoggerWrapper {
 	public class LoggerImpl : ILogger {
 		private readonly NLog.Logger nlog;
 		private readonly Rollbar.IRollbar rollbar;
