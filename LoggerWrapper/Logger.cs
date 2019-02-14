@@ -4,24 +4,24 @@ using System.Collections.Generic;
 
 namespace LoggerWrapper {
 	public class Logger : ILogger {
-		private readonly NLog.Logger logger;
+		private readonly NLog.Logger nlog;
 		private readonly Rollbar.IRollbar rollbar;
 
 		public Logger(NLog.Logger logger, Rollbar.IRollbar rollbar) {
-			this.logger = logger;
-			this.rollbar = rollbar;
+			this.nlog = logger ?? throw new ArgumentNullException("The NLog cannot be null.");
+			this.rollbar = rollbar ?? throw new ArgumentNullException("The Rollbar cannot be null.");
 		}
 		public Logger(Rollbar.IRollbar rollbar) {
-			this.logger = NLog.LogManager.GetCurrentClassLogger();
-			this.rollbar = rollbar;
+			this.nlog = NLog.LogManager.GetCurrentClassLogger();
+			this.rollbar = rollbar ?? throw new ArgumentNullException("The Rollbar cannot be null.");
 		}
 		public Logger(NLog.Logger logger) {
-			this.logger = logger;
+			this.nlog = logger ?? throw new ArgumentNullException("The NLog cannot be null.");
 			this.rollbar = Rollbar.RollbarLocator.RollbarInstance;
 		}
 
 		public Logger() {
-			this.logger = NLog.LogManager.GetCurrentClassLogger();
+			this.nlog = NLog.LogManager.GetCurrentClassLogger();
 			this.rollbar = Rollbar.RollbarLocator.RollbarInstance;
 		}
 
@@ -31,7 +31,7 @@ namespace LoggerWrapper {
 		/// Writes the diagnostic message at the Debug level.
 		/// </summary>
 		public void Debug(string message) {
-			logger.Debug(message);
+			nlog.Debug(message);
 #pragma warning disable 4014
 			rollbar.Debug(message);
 #pragma warning restore 4014
@@ -41,8 +41,10 @@ namespace LoggerWrapper {
 		/// Writes the diagnostic message and exception at the Debug level.
 		/// </summary>
 		public void Debug(Exception exeption, string message) {
-			logger.Debug(exeption, message);
+			nlog.Debug(exeption, message);
+#pragma warning disable 4014
 			rollbar.Debug(exeption, new Dictionary<string, object> { { "message", message } });
+#pragma warning restore 4014
 		}
 
 		/// <summary>
@@ -56,12 +58,14 @@ namespace LoggerWrapper {
 					message.Append($"custom.{item.Key}:{JsonConvert.SerializeObject(item.Value)}{Environment.NewLine}");
 				}
 
-				logger.Debug(exeption, message.ToString());
+				nlog.Debug(exeption, message.ToString());
 			}
 			else {
-				logger.Debug(exeption);
+				nlog.Debug(exeption);
 			}
+#pragma warning disable 4014
 			rollbar.Debug(exeption, custom);
+#pragma warning restore 4014
 		}
 
 
@@ -71,7 +75,8 @@ namespace LoggerWrapper {
 		/// Writes the diagnostic message at the Info level.
 		/// </summary>
 		public void Info(string message) {
-			logger.Info(message);
+			nlog.Info(message);
+#pragma warning disable 4014
 			rollbar.Info(message);
 		}
 
@@ -79,8 +84,10 @@ namespace LoggerWrapper {
 		/// Writes the diagnostic message and exception at the Info level.
 		/// </summary>
 		public void Info(Exception exeption, string message) {
-			logger.Info(exeption, message);
+			nlog.Info(exeption, message);
+#pragma warning disable 4014
 			rollbar.Info(exeption, new Dictionary<string, object> { { "message", message } });
+#pragma warning restore 4014
 		}
 
 		/// <summary>
@@ -94,12 +101,14 @@ namespace LoggerWrapper {
 					message.Append($"custom.{item.Key}:{JsonConvert.SerializeObject(item.Value)}{Environment.NewLine}");
 				}
 
-				logger.Info(exeption, message.ToString());
+				nlog.Info(exeption, message.ToString());
 			}
 			else {
-				logger.Info(exeption);
+				nlog.Info(exeption);
 			}
+#pragma warning disable 4014
 			rollbar.Info(exeption, custom);
+#pragma warning restore 4014
 		}
 
 
@@ -109,16 +118,20 @@ namespace LoggerWrapper {
 		/// Writes the diagnostic message at the Error level.
 		/// </summary>
 		public void Error(string message) {
-			logger.Error(message);
+			nlog.Error(message);
+#pragma warning disable 4014
 			rollbar.Error(message);
+#pragma warning restore 4014
 		}
 
 		/// <summary>
 		/// Writes the diagnostic message and exception at the Error level.
 		/// </summary>
 		public void Error(Exception exeption, string message) {
-			logger.Error(exeption, message);
+			nlog.Error(exeption, message);
+#pragma warning disable 4014
 			rollbar.Error(exeption, new Dictionary<string, object> { { "message", message } });
+#pragma warning restore 4014
 		}
 
 		/// <summary>
@@ -132,12 +145,14 @@ namespace LoggerWrapper {
 					message.Append($"custom.{item.Key}:{JsonConvert.SerializeObject(item.Value)}{Environment.NewLine}");
 				}
 
-				logger.Error(exeption, message.ToString());
+				nlog.Error(exeption, message.ToString());
 			}
 			else {
-				logger.Error(exeption);
+				nlog.Error(exeption);
 			}
+#pragma warning disable 4014
 			rollbar.Error(exeption, custom);
+#pragma warning restore 4014
 		}
 
 
@@ -147,16 +162,20 @@ namespace LoggerWrapper {
 		/// Writes the diagnostic message at the Warn level.
 		/// </summary>
 		public void Warn(string message) {
-			logger.Warn(message);
+			nlog.Warn(message);
+#pragma warning disable 4014
 			rollbar.Warning(message);
+#pragma warning restore 4014
 		}
 
 		/// <summary>
 		/// Writes the diagnostic message and exception at the Warn level.
 		/// </summary>
 		public void Warn(Exception exeption, string message) {
-			logger.Warn(exeption, message);
+			nlog.Warn(exeption, message);
+#pragma warning disable 4014
 			rollbar.Warning(exeption, new Dictionary<string, object> { { "message", message } });
+#pragma warning restore 4014
 		}
 
 		/// <summary>
@@ -170,12 +189,14 @@ namespace LoggerWrapper {
 					message.Append($"custom.{item.Key}:{JsonConvert.SerializeObject(item.Value)}{Environment.NewLine}");
 				}
 
-				logger.Warn(exeption, message.ToString());
+				nlog.Warn(exeption, message.ToString());
 			}
 			else {
-				logger.Warn(exeption);
+				nlog.Warn(exeption);
 			}
+#pragma warning disable 4014
 			rollbar.Warning(exeption, custom);
+#pragma warning restore 4014
 		}
 
 
@@ -185,16 +206,20 @@ namespace LoggerWrapper {
 		/// Writes the diagnostic message at the Fatal level.
 		/// </summary>
 		public void Fatal(string message) {
-			logger.Fatal(message);
+			nlog.Fatal(message);
+#pragma warning disable 4014
 			rollbar.Critical(message);
+#pragma warning restore 4014
 		}
 
 		/// <summary>
 		/// Writes the diagnostic message and exception at the Fatal level.
 		/// </summary>
 		public void Fatal(Exception exeption, string message) {
-			logger.Fatal(exeption, message);
+			nlog.Fatal(exeption, message);
+#pragma warning disable 4014
 			rollbar.Critical(exeption, new Dictionary<string, object> { { "message", message } });
+#pragma warning restore 4014
 		}
 
 		/// <summary>
@@ -208,12 +233,14 @@ namespace LoggerWrapper {
 					message.Append($"custom.{item.Key}:{JsonConvert.SerializeObject(item.Value)}{Environment.NewLine}");
 				}
 
-				logger.Fatal(exeption, message.ToString());
+				nlog.Fatal(exeption, message.ToString());
 			}
 			else {
-				logger.Fatal(exeption);
+				nlog.Fatal(exeption);
 			}
+#pragma warning disable 4014
 			rollbar.Critical(exeption, custom);
+#pragma warning restore 4014
 		}
 
 	}
