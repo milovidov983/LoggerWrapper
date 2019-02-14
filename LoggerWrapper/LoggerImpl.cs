@@ -78,6 +78,7 @@
 			nlog.Info(message);
 #pragma warning disable 4014
 			rollbar.Info(message);
+#pragma warning restore 4014
 		}
 
 		/// <summary>
