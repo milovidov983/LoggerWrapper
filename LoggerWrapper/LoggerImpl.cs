@@ -3,24 +3,24 @@ using System;
 using System.Collections.Generic;
 
 namespace LoggerWrapper {
-	public class Logger : ILogger {
+	public class LoggerImpl : ILogger {
 		private readonly NLog.Logger nlog;
 		private readonly Rollbar.IRollbar rollbar;
 
-		public Logger(NLog.Logger logger, Rollbar.IRollbar rollbar) {
+		public LoggerImpl(NLog.Logger logger, Rollbar.IRollbar rollbar) {
 			this.nlog = logger ?? throw new ArgumentNullException("The NLog cannot be null.");
 			this.rollbar = rollbar ?? throw new ArgumentNullException("The Rollbar cannot be null.");
 		}
-		public Logger(Rollbar.IRollbar rollbar) {
+		public LoggerImpl(Rollbar.IRollbar rollbar) {
 			this.nlog = NLog.LogManager.GetCurrentClassLogger();
 			this.rollbar = rollbar ?? throw new ArgumentNullException("The Rollbar cannot be null.");
 		}
-		public Logger(NLog.Logger logger) {
+		public LoggerImpl(NLog.Logger logger) {
 			this.nlog = logger ?? throw new ArgumentNullException("The NLog cannot be null.");
 			this.rollbar = Rollbar.RollbarLocator.RollbarInstance;
 		}
 
-		public Logger() {
+		public LoggerImpl() {
 			this.nlog = NLog.LogManager.GetCurrentClassLogger();
 			this.rollbar = Rollbar.RollbarLocator.RollbarInstance;
 		}
