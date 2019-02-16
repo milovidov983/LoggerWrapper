@@ -9,7 +9,12 @@ However, when using a rollbar as a target for a Nlog, when logging, the Nlog beh
 ## Purpose
 
 1) Be independent of the logging system.
-2) Write log to The Rollbar asynchronously without waiting for an answer.
+
+You can safely use the ```ILogger``` interface in your code and at any time simply change the logging service provider in the implementation class.
+
+2) Write to Rollbar asynchronously without waiting for an answer.
+
+Intentionally not to use  ```await``` to not wait for a long operation from the network.
 
 ## Remarks
 
