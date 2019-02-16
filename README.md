@@ -19,5 +19,5 @@ Intentionally not to use  ```await``` to not wait for a long operation from the 
 
 ## Remarks
 
-All settings of The Nlog and Rollbar are left to your discretion.
+All settings of Nlog and Rollbar are left to your discretion.
 How Nlog and Rollbar are initialized you can see in the implementation file https://github.com/milovidov983/LoggerWrapper/blob/master/LoggerWrapper/LoggerImpl.cs
