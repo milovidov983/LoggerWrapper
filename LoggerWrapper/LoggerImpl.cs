@@ -244,5 +244,8 @@
 #pragma warning restore 4014
 		}
 
+		public void Trace(string message) {
+			nlog.Trace(message);
+		}
 	}
 }

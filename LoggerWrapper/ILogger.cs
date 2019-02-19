@@ -3,6 +3,11 @@
 	using System.Collections.Generic;
 
 	public interface ILogger {
+		/// <summary>
+		/// Works only for Nlog
+		/// </summary>
+		void Trace(string message);
+
 		void Info(string message);
 		void Info(Exception exeption, string message);
 		void Info(Exception exeption, IDictionary<string, object> custom = null);
