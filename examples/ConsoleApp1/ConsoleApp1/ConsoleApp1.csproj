@@ -9,4 +9,16 @@
     <PackageReference Include="LoggerWrapper" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="settings.development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="settings.production.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="settings.test.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

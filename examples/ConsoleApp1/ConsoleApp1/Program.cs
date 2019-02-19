@@ -3,7 +3,11 @@
 namespace ConsoleApp1 {
 	class Program {
 		static void Main(string[] args) {
-			Console.WriteLine("Hello World!");
+			var logger = Settings.Logger;
+
+			logger.Debug("Hello!");
+
+			Console.Read();
 		}
 	}
 }
