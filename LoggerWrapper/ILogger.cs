@@ -4,7 +4,9 @@
 
 	public interface ILogger {
 		/// <summary>
-		/// Works only for Nlog
+		/// Writes trace log.
+		/// Attention! Since the rollbar does not support the trace log level, 
+		/// therefore we write to the info level and insert the prefix [tarce] before the your message.
 		/// </summary>
 		void Trace(string message);
 

@@ -3,10 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Description>Wrap loggers nlog and rollbar</Description>
-    <RepositoryUrl>https://github.com/milovidov983/LoggerWrapper</RepositoryUrl>
-    <PackageLicense>https://github.com/milovidov983/LoggerWrapper/blob/master/LICENSE</PackageLicense>
-    <PackageIconUrl>https://github.com/milovidov983/LoggerWrapper/blob/master/docs/icon.png</PackageIconUrl>
-    <Version>1.0.1</Version>
+    <AssemblyName>LoggerWrapper</AssemblyName>
+    <PackageId>LoggerWrapper</PackageId>
+    <Version>1.0.3</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>C:\repos\logger\LoggerWrapper\LoggerWrapper.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

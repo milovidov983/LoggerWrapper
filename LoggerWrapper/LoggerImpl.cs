@@ -244,8 +244,18 @@
 #pragma warning restore 4014
 		}
 
+		/// <summary>
+		/// Writes trace log.
+		/// Attention! Since the rollbar does not support the trace log level, 
+		/// therefore we write to the info level and insert the prefix [tarce] before the your message.
+		/// </summary>
 		public void Trace(string message) {
 			nlog.Trace(message);
+			var sb = new System.Text.StringBuilder();
+			sb.Append("[trace] ").Append(message);
+#pragma warning disable 4014
+			rollbar.Info(sb.ToString());
+#pragma warning restore 4014
 		}
 	}
 }
